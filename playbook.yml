@@ -97,10 +97,6 @@
       notify: restart apache
 
     # Community MySQL Ansible Galaxy Plugin
-    # - name: Create database 'bobdata'
-    #  community.mysql.mysql_db:
-    #    name: bobdata
-    #    state: present
 
     - name: Create database user 'bob' and password 'youruncle1' with all privs
       community.mysql.mysql_user:
