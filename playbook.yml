@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: yes 
+  become: true
 
   vars_files:
     - vars.yml
@@ -98,10 +98,10 @@
 
     # Community MySQL Ansible Galaxy Plugin
 
-    - name: Create database user 'bob' and password 'youruncle1' with all privs
+    - name: Create database user 'dbadmin' and password 'ohniner09' with all privs
       community.mysql.mysql_user:
-        name: bob
-        password: youruncle1
+        name: dbadmin 
+        password: ohniner09
         login_unix_socket: /var/run/mysqld/mysqld.sock
         priv: '*.*:ALL,GRANT'
         state: present
@@ -109,9 +109,11 @@
     - name: Create new databases with names 'foo' and 'bar'
       community.mysql.mysql_db:
         check_implicit_admin: yes
-        login_user: bob
-        login_password: youruncle1
+        login_user: dbadmin
+        login_password: ohniner09
         name:
           - foo
           - bar
         state: present
+  roles:
+    - geerlingguy.composer
