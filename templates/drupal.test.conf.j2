@@ -1,9 +1,9 @@
 <VirtualHost *:80>
     ServerAdmin webmaster@localhost
     ServerName {{ domain }}.lib.ut.us
-    ServerAlias qa.{{ domain }}.lib.ut.us
-    DocumentRoot {{ drupal_core_path }}/web
-    <Directory "{{ drupal_core_path }}/web">
+    ServerAlias {{sub}}.{{ domain }}.lib.ut.us
+    DocumentRoot {{ drupal_core_path }}weberpl_org
+    <Directory "{{ drupal_core_path }}weberpl_org">
         Options FollowSymLinks Indexes
         AllowOverride All
     </Directory>

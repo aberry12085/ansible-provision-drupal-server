@@ -1,6 +1,6 @@
 ---
 # The path where Drupal will be downloaded and installed
-drupal_core_path: "/var/www/drupal"
+drupal_core_path: "/var/www/"
 
 # The resulting domain will be [domain].test (with .test appended).
 domain: "weberpl"
