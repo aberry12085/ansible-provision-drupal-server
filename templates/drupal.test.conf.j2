@@ -2,8 +2,8 @@
     ServerAdmin webmaster@localhost
     ServerName {{ domain }}.lib.ut.us
     ServerAlias {{sub}}.{{ domain }}.lib.ut.us
-    DocumentRoot {{ drupal_core_path }}weberpl_org
-    <Directory "{{ drupal_core_path }}weberpl_org">
+    DocumentRoot {{ drupal_core_path }}weberpl_org/web
+    <Directory "{{ drupal_core_path }}weberpl_org/web">
         Options FollowSymLinks Indexes
         AllowOverride All
     </Directory>

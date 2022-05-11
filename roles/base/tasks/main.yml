@@ -37,7 +37,6 @@
       - python3-pymysql # need both?
       - mariadb-server
       - neofetch
-      - terminalparrot
 
 - name: "Start Apache, MySQL and PHP"
   service: "name={{ item }} state=started enabled=yes"
