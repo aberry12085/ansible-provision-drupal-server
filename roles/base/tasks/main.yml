@@ -6,6 +6,28 @@
     name:
       - python3-apt
       - python3-pycurl
+# Custom PHP8 because Debian is on PHP 7.3 or 7.4
+- name: Get dependencies for installing PHP 8 from Sury
+  apt:
+    state: present
+    name:
+      - lsb-release
+      - ca-certificates
+      - apt-transport-https
+      - software-properties-common
+      - gnupg2
+# Custom PHP8 because Debian is on PHP 7.3 or 7.4
+- name: add Sury PHP apt-key
+  apt_key:
+    url: https://packages.sury.org/php/apt.gpg
+    state: present
+# Custom PHP8 because Debian is on PHP 7.3 or 7.4
+- name: add Sury PHP apt repository
+  apt_repository:
+    repo: 'deb https://packages.sury.org/php/ buster main'
+    state: present
+    filename: sury-php
+    update_cache: yes
 
 - name: "Install Apache, MySQL, PHP and other dependencies for Drupal"
   apt:
@@ -17,22 +39,13 @@
       - unzip
       - sendmail
       - apache2
-      - php7.3
-      - php7.3-common
-      - php7.3-cli
-      - php7.3-dev
-      - php7.3-gd
-      - php7.3-curl
-      - php7.3-json
-      - php7.3-opcache
-      - php7.3-xml
-      - php7.3-mbstring
-      - php7.3-pdo
-      - php7.3-mysql
-      - php7.3-zip
-      - php-apcu
+      - php8.1
+      - php8.1-pdo
+      - php8.1-xml
+      - php8.1-gd
+      - php8.1-curl
+      - php8.1-mbstring
       - libpcre3-dev
-      - libapache2-mod-php7.3
       - python3-mysqldb # need this?
       - python-pymysql
       - python3-pymysql # need both?
@@ -73,7 +86,7 @@
 - name: Create Drupal site directory
   file:
     path: /var/www/weberpl_org
-    owner: www-data 
+    owner: www-data
     group: www-data
     mode: 0775
     state: directory
@@ -91,7 +104,7 @@
 # Community MySQL Ansible Galaxy Plugin
 - name: Create database user 'dbadmin' and password 'ohniner09' with all privs
   community.mysql.mysql_user:
-    name: dbadmin 
+    name: dbadmin
     password: ohniner09
     login_unix_socket: /var/run/mysqld/mysqld.sock
     priv: '*.*:ALL,GRANT'
