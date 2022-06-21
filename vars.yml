@@ -1,4 +1,12 @@
 ---
+# Debian Release Handle
+deb_release: "buster"
+
+# PHP Version
+php_v: "8.1" # short for inline
+php_version: "{{ php_v }}" # long for geerlingguy
+php_versions_install_recommends: false # also for geerlingguy
+
 # The path where Drupal will be downloaded and installed
 drupal_core_path: "/var/www/"
 

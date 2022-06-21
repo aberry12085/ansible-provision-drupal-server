@@ -24,7 +24,7 @@
 # Custom PHP8 because Debian is on PHP 7.3 or 7.4
 - name: add Sury PHP apt repository
   apt_repository:
-    repo: 'deb https://packages.sury.org/php/ buster main'
+    repo: 'deb https://packages.sury.org/php/ {{ deb_release }} main'
     state: present
     filename: sury-php
     update_cache: yes
@@ -39,12 +39,20 @@
       - unzip
       - sendmail
       - apache2
-      - php8.1
-      - php8.1-pdo
-      - php8.1-xml
-      - php8.1-gd
-      - php8.1-curl
-      - php8.1-mbstring
+      - php{{ php_v }}
+      - php{{ php_v }}-cli
+      - php{{ php_v }}-common
+      - php{{ php_v }}-dev
+      - php{{ php_v }}-opcache
+      - php{{ php_v }}-pdo
+      - php{{ php_v }}-xml
+      - php{{ php_v }}-gd
+      - php{{ php_v }}-curl
+      - php{{ php_v }}-mbstring
+      - php{{ php_v }}-mysql
+      - php{{ php_v }}-zip
+      - libapache2-mod-php{{ php_v }}
+      - php-apcu
       - libpcre3-dev
       - python3-mysqldb # need this?
       - python-pymysql
@@ -95,7 +103,7 @@
 # Example in action: lineinfile module
 - name: Adjust OpCache memory setting.
   lineinfile:
-    dest: "/etc/php/7.3/apache2/conf.d/10-opcache.ini"
+    dest: "/etc/php/{{ php_v }}/apache2/conf.d/10-opcache.ini"
     regexp: "^opcache.memory_consumption"
     line: "opcache.memory_consumption = 96"
     state: present

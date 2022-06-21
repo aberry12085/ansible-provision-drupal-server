@@ -15,10 +15,12 @@
 
   # composer role for Drupal installation
   roles:
+    - geerlingguy.php-versions 
+    - geerlingguy.php
     - base
     - geerlingguy.composer
 
-    # Installing on Debian 10 
-    # Need to configure firewall and ports 
+    # Installing on Debian 10
+    # Need to configure firewall and ports
     # - name: "Configure firewall to OFF for now (CHANGE FOR PRODUCTION~!)"
     #   service: name=ufw state=stopped
